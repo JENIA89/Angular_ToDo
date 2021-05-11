@@ -3,11 +3,11 @@
 </section>
 <div class="container">
     <div class="add-todo-box">
-        <form>
+        <form #form="ngForm"  (ngSubmit)="onFormSubmit(form)"> 
             <h2 class="title is-5 ">New Todo</h2>
-            <div class="field is-grouped">
+            <div class="field is-grouped" style="margin: 0;">
                 <p class="control is-expanded">
-                  <input class="input" type="text" placeholder="Type todo text here ...">
+                  <input ngModel required #todoTextField="ngModel" minlength="5" name="text" class="input" type="text" placeholder="Type todo text here ...">
                 </p>
                 <p class="control">
                   <button class="button alt-gradient-button">
@@ -16,6 +16,10 @@
                   </button>
                 </p>
               </div>
+              <div *ngIf="todoTextField.invalid && showValidErrors">
+                <p class="help is-danger" *ngIf="todoTextField.errors.required">Please enter the text of your todo</p>
+                <p class="help is-danger" *ngIf="todoTextField.errors.minlength">Text must be at least 5 characters</p>
+            </div>
         </form>
     </div>
 </div>
@@ -23,20 +27,20 @@
 <section class="section">
   <div class="container">
     <div class="todos-list">
-      <div class="todo-item completed">
+      <div class="todo-item" *ngFor="let todo of todos" [class.completed]="todo.completed">
         <div class="check-box">
           <i class="material-icons">check</i>
         </div>
         <div class="todo-text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis fugit magni facilis animi, deserunt modi, vel, laboriosam corrupti inventore quisquam dolores qui a culpa aliquid ipsum sed. Mollitia nihil odio magnam, repudiandae vero fugiat aperiam assumenda quisquam, eaque sed qui minima dolores, aspernatur impedit maxime accusantium expedita eius laboriosam soluta?
+         {{todo.text}}
         </div>
-      </div>
-      <div class="todo-item">
-        <div class="check-box">
-          <i class="material-icons">check</i>
-        </div>
-        <div class="todo-text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis fugit magni facilis animi, deserunt modi, vel, laboriosam corrupti inventore quisquam dolores qui 
+        <div class="todo-controls-box">
+          <div class="todo-control-button">
+            <i class="material-icons">edit</i>
+          </div>
+          <div class="todo-control-button is-danger">
+            <i class="material-icons">delete</i>
+          </div>
         </div>
       </div>
     </div>
