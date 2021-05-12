@@ -26,5 +26,14 @@ export class TodosComponent implements OnInit {
     form.reset()
   }
 
+  toggleCompleted(todo:Todo){
+    todo.completed = !todo.completed
+  }
+
+  onTodoDeleteClicked(todo:Todo){
+    const index = this.todos.indexOf(todo)
+    this.dataService.deleteTodo(index)
+  }
+
 }
  

@@ -8,7 +8,7 @@ export class DataService {
 
   todos: Todo[]=[
     new Todo('This is a test', true),
-    new Todo('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis fugit magni facilis animi, deserunt modi,')
+    new Todo('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt modi,')
   ]
 
   constructor() { }
